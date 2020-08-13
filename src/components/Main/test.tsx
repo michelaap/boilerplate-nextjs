@@ -7,9 +7,15 @@ describe('<Main />', () => {
     const { container } = render(<Main />);
 
     expect(
-      screen.getByRole('heading', { name: /nextjs/i })
+      screen.getAllByRole('heading', { name: /nextjs/i })[0]
     ).toBeInTheDocument();
 
-    expect(container.firstElementChild).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should render the colors correctly', () => {
+    const { container } = render(<Main />);
+
+    expect(container.firstChild).toHaveStyle({ 'background-color': '#06092b' });
   });
 });
